@@ -12,3 +12,15 @@ $ curl -XGET <kiosk-service>/tickets
 // Buy one ticket
 $ curl -XPOST <kiosk-service>/buy
 ```
+
+``` bash
+$ docker network create kiosk
+$ docker run -d -p 5000:5000 \
+    -e REDIS_HOST=lcredis --network=kiosk kiosk-example
+$ docker run -d --network-alias lcredis --network=kiosk redis
+$ docker run -d -e REDIS_HOST=lcredis -e MYSQL_HOST=lmysql \
+-e MYSQL_ROOT_PASSWORD=$MYPS -e MYSQL_USER=root \
+--network=kiosk recorder-example
+$ docker run -d --network-alias lmysql -e MYSQL_ROOT_PASSWORD=$MYPS \
+--network=kiosk mysql:5.7
+```
