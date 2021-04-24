@@ -13,6 +13,7 @@ $ curl -XGET <kiosk-service>/tickets
 $ curl -XPOST <kiosk-service>/buy
 ```
 
+## What do you think when we run this bash
 ``` bash
 $ docker network create kiosk
 $ docker run -d -p 5000:5000 \
@@ -24,3 +25,7 @@ $ docker run -d -e REDIS_HOST=lcredis -e MYSQL_HOST=lmysql \
 $ docker run -d --network-alias lmysql -e MYSQL_ROOT_PASSWORD=$MYPS \
 --network=kiosk mysql:5.7
 ```
+> Everything works well so far. However, if next time we want to launch the same stack again, our applications are very likely to start up prior to the databases, and
+they might fail if any incoming connection requests any change against the databases. In other words, we have to consider the startup order in our startup scripts.
+Additionally, scripts are also inept with problems such as how to deal with a random components crash, how to manage variables, how to scale out certain components,
+and so on
