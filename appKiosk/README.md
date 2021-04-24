@@ -29,3 +29,13 @@ $ docker run -d --network-alias lmysql -e MYSQL_ROOT_PASSWORD=$MYPS \
 they might fail if any incoming connection requests any change against the databases. In other words, we have to consider the startup order in our startup scripts.
 Additionally, scripts are also inept with problems such as how to deal with a random components crash, how to manage variables, how to scale out certain components,
 and so on
+
+## What are different between `docker run` vs `docker-compose run`
+> Docker Compose is basically a medley of Docker functions for multiple containers.
+For example, the counterpart of docker build is docker-compose build; the previous one builds a Docker image, and so the later one builds Docker images listed in the
+docker-compose.yml. But there's one thing that needs to be pointed out: the dockercompose run command is not the correspondent of docker run; it's running a specific container from the configuration in the docker-compose.yml. In fact, the closest command to docker run is docker-compose up.
+
+## What are network default when we use `docker-compose up`?
+> Since there is no network defined, docker-compose would create a new network with a default driver and connect services to the same network.
+Additionally, the network name of a container would be the service's name. You may
+notice that the name displayed in the console slightly differs from its original one in the docker-compose.yml. It's because Docker Compose tries to avoid name conflicts between containers. As a result, Docker Compose runs the container with the name it generated, and makes a network-alias with the service name.
