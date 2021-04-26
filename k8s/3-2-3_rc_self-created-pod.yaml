@@ -1,0 +1,15 @@
+# Manual create a pod with a same labels
+apiVersion: v1
+kind: Pod
+metadata:
+  name: our-nginx
+  labels:
+    project: chap3
+    service: web
+    version: "0.1"
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
