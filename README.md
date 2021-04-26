@@ -1,4 +1,6 @@
 # Requirement
+- Docker/ Container understanding
+# Enviroment
 - Win 10: Docker with K8s features
 - Linux: Minikube
 - Mac: Docker with k8s feature
