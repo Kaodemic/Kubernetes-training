@@ -37,3 +37,6 @@ nginx-bsl6m   1/1     Running       0          4m5s
 nginx-plsdt   1/1     Running       0          4m5s
 our-nginx     0/1     Terminating   0          4s
 ```
+It's scheduled, and ReplicationController catches it. The amount of pods becomes
+three, which exceeds our desired count. The pod is eventually killed:
+![./ReplicationController.png](kube)
